@@ -113,6 +113,7 @@ func RunWifi(log bunyan.Logger, messages chan CmdMessage, cfgLocation string) {
 	command.StartWpaSupplicant()
 
 	// Scan
+	// why sleep 5 seconds here? - spidercatnat
 	time.Sleep(5 * time.Second)
 	wpacfg.ScanNetworks()
 

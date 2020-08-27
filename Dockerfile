@@ -20,3 +20,5 @@ WORKDIR /
 
 COPY --from=builder /go/bin/wifi /wifi
 ENTRYPOINT ["/wifi"]
+
+

@@ -1,0 +1,9 @@
+- Do a full-text search for "spidercatnat" to find your added comments via IDE.
+
+- Most likely your focus will be iotwifi.ConnectNetwork()
+
+- Clone the forked repo onto your Pi, and use VSCode's remote SSH extension for development.
+
+- Change the dev_run script in the makefile to reflect your Go path and forked repo name.
+
+- Use wpa_cli to check on WPA state manually to verify iotwifi is working as intended.

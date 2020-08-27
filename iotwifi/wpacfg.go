@@ -186,7 +186,8 @@ func (wpa *WpaCfg) ConnectNetwork(creds WpaCredentials) (WpaConnection, error) {
 		wpa.Log.Fatal(err.Error())
 		return connection, err
 	}
-	wpa.Log.Info("WPA select got: %s", enableStatus)
+	selectStatus := strings.TrimSpace(string(selectOut))
+	wpa.Log.Info("WPA select got: %s", selectStatus)
 
 	// regex for state
 	rState := regexp.MustCompile("(?m)wpa_state=(.*)\n")

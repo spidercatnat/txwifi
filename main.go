@@ -109,7 +109,6 @@ func main() {
 
 		blog.Info("Connect Handler Got: ssid:|%s| psk:|%s|", creds.Ssid, creds.Psk)
 
-		// Business login in ConnectNetwork a likely culprit for re-association bugs. - spidercatnat
 		connection, err := wpacfg.ConnectNetwork(creds)
 		if err != nil {
 			blog.Error(err.Error())

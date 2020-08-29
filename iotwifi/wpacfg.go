@@ -236,7 +236,8 @@ func (wpa *WpaCfg) ConnectNetwork(creds WpaCredentials) (WpaConnection, error) {
 func (wpa *WpaCfg) DisconnectNetwork() (map[string]string, error) {
 	cfgMap := make(map[string]string, 0)
 
-	disconnectOut, err = exec.Cmd("wpa_cli", "-i", "wlan0", "disconnect")
+	disconnectOut, err := exec.Command("wpa_cli", "-i", "wlan0", "disconnect").Output()
+
 	if err != nil {
 		wpa.Log.Fatal("Got error disconnecting from network: %s", err.Error())
 		return cfgMap, err

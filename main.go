@@ -168,6 +168,7 @@ func main() {
 		apiReturn := &ApiReturn{
 			Status:  "OK",
 			Message: "Disconnected from the network.",
+			Payload: disconnectNetwork,
 		}
 
 		ret, err := json.Marshal(apiReturn)

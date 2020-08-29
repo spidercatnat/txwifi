@@ -232,6 +232,21 @@ func (wpa *WpaCfg) ConnectNetwork(creds WpaCredentials) (WpaConnection, error) {
 	return connection, nil
 }
 
+// DisconnectNetwork disconnects from the current wifi network
+func (wpa *wpaCfg) DisconnectNetwork() (map[string]string, error) {
+	cfgMap := make(map[string]string, 0)
+
+	disconnectOut, err = exec.Cmd("wpa_cli", "-i", "wlan0", "disconnect")
+	if err != nil {
+		wpa.Log.Fatal("Got error disconnecting from network: %s", err.Error())
+		return cfgMap, err
+	}
+
+	cfgMap = cfgMapper(disconnectOut)
+
+	return cfgMap, nil
+}
+
 // Status returns the WPA wireless status.
 func (wpa *WpaCfg) Status() (map[string]string, error) {
 	cfgMap := make(map[string]string, 0)

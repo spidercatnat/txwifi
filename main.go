@@ -156,6 +156,30 @@ func main() {
 		w.Write(ret)
 	}
 
+	// disonnect from the current network
+	disconnectHandler := func(w http.ResponseWriter, r *http.Request) {
+		blog.Info("Got Disconnect")
+		disconnectNetwork, err := wpacfg.DisconnectNetwork()
+		if err != nil {
+			retError(w, err)
+			return
+		}
+
+		apiReturn := &ApiReturn{
+			Status:  "OK",
+			Message: "Disconnected from the network.",
+		}
+
+		ret, err := json.Marshal(apiReturn)
+		if err != nil {
+			retError(w, err)
+			return
+		}
+
+		w.Header().Set("Content-Type", "application/json")
+		w.Write(ret)
+	}
+
 	// kill the application
 	killHandler := func(w http.ResponseWriter, r *http.Request) {
 		messages <- iotwifi.CmdMessage{Id: "kill"}
@@ -195,6 +219,7 @@ func main() {
 	r.HandleFunc("/status", statusHandler)
 	r.HandleFunc("/connect", connectHandler).Methods("POST")
 	r.HandleFunc("/scan", scanHandler)
+	r.HandleFunc("/disconnect", disconnectHandler)
 	r.HandleFunc("/kill", killHandler)
 	http.Handle("/", r)
 

@@ -233,7 +233,7 @@ func (wpa *WpaCfg) ConnectNetwork(creds WpaCredentials) (WpaConnection, error) {
 }
 
 // DisconnectNetwork disconnects from the current wifi network
-func (wpa *wpaCfg) DisconnectNetwork() (map[string]string, error) {
+func (wpa *WpaCfg) DisconnectNetwork() (map[string]string, error) {
 	cfgMap := make(map[string]string, 0)
 
 	disconnectOut, err = exec.Cmd("wpa_cli", "-i", "wlan0", "disconnect")
